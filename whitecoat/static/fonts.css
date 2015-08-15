@@ -1,0 +1,18 @@
+@font-face {
+	font-family: 'Helvetica 65 Medium';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Helvetica 65 Medium'), url('/static/fonts/HelveticaNeue-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Helvetica 45 Light';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Helvetica 45 Light'), url('/static/fonts/HelveticaNeue-Light.woff') format('woff');
+}
+
+@font-face{
+  font-family: 'cute icon';
+  src: local('cute icon), url('/static/fonts/icons.woff') format('woff');
+}
