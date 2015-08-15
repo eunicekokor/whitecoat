@@ -17,15 +17,15 @@
     <div id="content">
 		<center>
 			<h1 class="intro_heading">Congrats Shubhu!</h1>
-      <a href="#"><div id="tellher">Let her know.</div></a>
+      <a href="#"><div id="tellher"><i class="fa fa-stethoscope"></i> Let her know.</div></a>
 		</center>
   </div>
-  <div id="dark"></div>
-  <div id="light">
-    <form action="/" method="post" style="text-align: center;">
-      <input class="form form-name" name="name">name</input><br>
-      <input class="form form-text" name="text">text</input>
-      <button class="form form-button" type="submit">Text!</button>
+  <div id="dark" style="display:none"></div>
+  <div id="light" style="display:none">
+    <form onsubmit="redo()" action="/" method="post">
+      <input class="form form-name" placeholder="Enter Your Name" name="name" required></input><br>
+      <input class="form form-text" placeholder="Enter a message for Shubhu!" name="text" required></input>
+      <a href="#"><button class="form form-button" type="submit"><i class="fa fa-stethoscope"></i> Text Her</button></a>
     </form>
   </div>
 	</body>
@@ -34,8 +34,28 @@
 <html>
 
 <script>
-$('#tellher').click(){
-  $('#dark').fadeIn();
+var count = 0;
+function redo(){
+  if ($('#name').val() !='undefined' && $('#text').val() != 'undefined') {
+    console.log("perf");
+    $('#dark').fadeOut();
+    $('#light').fadeOut();
+  }
+  count++;
 }
+
+if (count > 2){
+  alert("Please don't spam her!");
+}
+
+$('#tellher').click(function(){
+$('#dark').fadeIn();
+  $('#light').fadeIn();
+})
+
+$('#dark').click(function(){
+    $('#dark').fadeOut();
+    $('#light').fadeOut();
+})
 
 </script>

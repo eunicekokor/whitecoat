@@ -11,8 +11,3 @@
 	font-weight: normal;
 	src: local('Helvetica 45 Light'), url('/static/fonts/HelveticaNeue-Light.woff') format('woff');
 }
-
-@font-face{
-  font-family: 'cute icon';
-  src: local('cute icon), url('/static/fonts/icons.woff') format('woff');
-}
