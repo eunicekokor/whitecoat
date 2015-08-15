@@ -3,6 +3,14 @@ html{
   background: yellow;
 }
 
+h1{
+  font-family: 'Helvetica 65 Medium';
+}
+
+p{
+  font-family: 'Helvetica 45 Light';
+}
+
 #content {
   margin-top: 10em;
 }
@@ -56,14 +64,21 @@ html{
   border-radius: 1%;
   width: 50%;
   height:70%;
-  background: white;
+  background: rgba(0,0,0,.5);
   left: 25%;
 
 }
 .form{
   -webkit-appearance:none;
   box-shadow: none !important;
-    border-radius: 1%;
+  border-radius: 1%;
+  width: 90%;
+  margin: 1.2em;
+  margin-top: 2%;
+  margin-bottom: 0;
+  margin-left: 5%;
+  border-style: solid;
+  border-width: 3px;
 }
 
 ::-webkit-input-placeholder {
@@ -72,14 +87,14 @@ html{
 
 .form-button{
   margin: 1em;
-  background: white;
+  background: transparent;
   color: black;
   font-size: 2.5em;
   padding: 12px;
   border-color:plum;
   border-style: solid;
-  border-width: 1px;
-  width: 85%;
+  width: 90%;
+  margin-left: 5%;
   height: 20%;
   display: inline-block;
   -webkit-transition: all 0.5s ease-in-out;
@@ -94,32 +109,39 @@ html{
   background: plum;
   border-color:plum;
   color: white;
-  box-shadow: none;
 }
+
 .form-name{
   font-size: 1.5em;
-  margin: 1.2em;
-  margin-top: 1.5em;
-  margin-bottom: 0;
-  width: 50%;
-  border: none;
   color: black;
+  border-color:plum;
+  background: transparent;
+}
+
+.form-name:focus{
+background: plum;
+color: white;
+outline: none;
+}
+.form-text:focus{
+background: plum;
+color: white;
+outline: none;
 }
 
 .form-text{
   padding-bottom: 3em;
   font-size: 2em;
-  margin: 2em;
-  margin-left: 1em;
-  margin-bottom: 0;
-  width: 70%;
-  border: none;
+  border-color:plum;
+    background: transparent;
 }
 
 @media screen and (max-width: 667px) { 
     #light{
-      width: 75%;
-      left: 2.5em;
+      width: 90%;
+      left: 5%;
+      height: 90%;
+      top: 5%;
     }
     .intro_heading{
       font-size: 5em;
@@ -133,7 +155,12 @@ html{
 
     .form{
       line-height: inherit;
-      width: 80%;
       overflow: scroll;
+    }
+    .form-button{
+      margin: 0;
+      margin-top: 2%;
+      height: 40%;
+      margin-left: 5%
     }
 }
