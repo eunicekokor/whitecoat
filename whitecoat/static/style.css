@@ -1,19 +1,123 @@
 html{
 	font-family: 'Helvetica 45 Light';
+  background: yellow;
+}
+
+#content {
+  margin-top: 10em;
 }
 
 .intro_heading{
 	font-size: 10em;
-	color: red;
-  margin-top: 2em;
-  margin-bottom: 0em;
+	color: teal;
+  margin:0 auto;
   padding-bottom: 0em;
+}
+
+#tellher, a:visited{
+  color: black;
+  font-size: 2.5em;
+  line-height: 2.5em;
+  padding: 12px;
+  border-color:teal;
+  border-style: solid;
+  border-width: medium;
+  width: 25%;
+  height: inherit;
+  display: inline-block;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 2px 2px 1px teal;
+}
+
+
+#tellher:hover{
+  background: teal;
+  border-color:teal;
+  color: white;
+  box-shadow: none;
+}
+
+#dark {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.85);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#light{
+  position: absolute;
+  top: 20%;
+  border-radius: 1%;
+  width: 50%;
+  height:70%;
+  background: white;
+  left: 25%;
+
+}
+.form{
+  -webkit-appearance:none;
+  box-shadow: none !important;
+    border-radius: 1%;
+}
+
+.form-button{
+  margin: 1em;
+  background: white;
+  color: black;
+  font-size: 2.5em;
+  padding: 12px;
+  border-color:teal;
+  border-style: solid;
+  border-width: medium;
+  width: 35%;
+  height: 2.5em;
+  display: inline-block;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 2px 2px 1px teal;
+}
+
+.form-button:hover{
+  background: teal;
+  border-color:teal;
+  color: white;
+  box-shadow: none;
+}
+.form-name{
+  font-size: 1.5em;
+  margin: 1.2em;
+  margin-bottom: 0;
+  width: 50%;
+}
+
+.form-text{
+  padding-bottom: 3em;
+  font-size: 2em;
+  margin: 2em;
+  margin-bottom: 0;
+  width: 70%;
 }
 
 @media screen and (max-width: 667px) { 
     .intro_heading{
-      font-size: 150px;
+      font-size: 5em;
       padding-top: 0;
       margin-top: 10px;
+    }
+    #tellher, a:visited{
+      line-height: inherit;
+      width: 50%;
+    }
+    #sub{
+      display: none;
     }
 }

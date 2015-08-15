@@ -1,38 +1,41 @@
 <html>
 	<head>
+	<title>Eunice Kokor.</title>
+
+	    <!-- External Imports: Jquery-->
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="static/js/substituteteacher.min.js"></script>
+	<link rel="shortcut icon" href="static/images/eklogo.ico" type="image/x-icon" />
     <link href="static/style.css" rel="stylesheet"/>
     <link href="static/fonts.css" rel="stylesheet"/>
-    <link href="static/icons.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
 	</head>
 
 	<body>
+    <div id="content">
 		<center>
-      <div class="stethoscope"></div>
-			<h1 class="intro_heading">We're So Proud!</h1>
-      <h2 id="sub">You're Awesome, Shubhu!</h2>
+			<h1 class="intro_heading">Congrats Shubhu!</h1>
+      <a href="#"><div id="tellher">Let her know.</div></a>
 		</center>
+  </div>
+  <div id="dark"></div>
+  <div id="light">
+    <form action="/" method="post" style="text-align: center;">
+      <input class="form form-name" name="name">name</input><br>
+      <input class="form form-text" name="text">text</input>
+      <button class="form form-button" type="submit">Text!</button>
+    </form>
+  </div>
 	</body>
 
 
 <html>
 
 <script>
-var opts = {
-  containerId: "sub",
-  namespace: "sub",
-  interval: 6000,
-  speed: 200,
-  verbose: true,
-  random: false,
-  best: true
-};
+$('#tellher').click(){
+  $('#dark').fadeIn();
+}
 
-var sub = new Sub([
-    "On August 15, 2015 Shubhu gets her white coat",
-    "A feat that Shubhu has been working on for two years!",
-    "Shubhu is a part of a crazy 6 year medical program",
-    "and Shubhu is gonna rock the world someday.",
-    "so as her friends we want to wish her the best."
-], opts).run();
 </script>
