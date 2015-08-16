@@ -60,10 +60,6 @@ p{
   top: 0;
 }
 
-@-ms-viewport{
-  width: device-width;
-}
-
 #light{
   position: absolute;
   top: 20%;
@@ -139,8 +135,8 @@ outline: none;
   padding-bottom: 3em;
   font-size: 2em;
   border-color:plum;
-    background: transparent;
-    color: white;
+  background: transparent;
+  color: white;
 }
 
 @media screen and (max-width: 667px) { 
