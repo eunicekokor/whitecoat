@@ -15,6 +15,7 @@ def index():
 
     name = request.form.get("name", "Eunice")
     body = text + "\nFrom: " + name
+    data["message"] = body
     client.messages.create(
                            to="+17149075336",
                            from_="+15627310871",

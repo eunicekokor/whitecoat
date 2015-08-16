@@ -1,5 +1,6 @@
 <html>
 	<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Whitecoat.</title>
 
 	    <!-- External Imports: Jquery-->
@@ -20,7 +21,7 @@
   </div>
   <div id="dark" style="display:none"></div>
   <div id="light" style="display:none">
-    <form onsubmit="redo()" action="/" method="post">
+    <form id="#frmLogin" onsubmit="redo()" action="/" method="post">
       <p style="text-align: left; color: white; margin-left: 1.2em"> Shubhu's getting her white coat on Aug 15th! <br>Text her to show your support for her!<br> Don't forget to add your name before you press <b>send text</b></p>
       <input class="form form-name" style="text-align:center" placeholder="Enter your name" name="name" required></input><br>
       <textarea class="form form-text" style="text-align:center" placeholder="Enter a sweet message (:" name="text" required></textarea>
@@ -34,11 +35,12 @@
 
 <script>
 var count = 0;
+
 function redo(){
   if ($('#name').val() !='undefined' && $('#text').val() != 'undefined') {
-    console.log("perf");
     $('#dark').fadeOut();
     $('#light').fadeOut();
+    alert( "You successfully texted Shubhu.");
   }
   count++;
 }
