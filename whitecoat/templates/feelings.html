@@ -19,7 +19,7 @@
     <h1 id="act"> Hello. How are you feeling? </h1>
     <ul>
       {% for key in feelings %}
-      <a class="feeling" id="{{key}}" href="#"><li>&#{{feelings[key].emoji}};</li>{{key}}</a>
+      <a class="feeling" id="{{key}}" href="#"><li>&#{{feelings[key].emoji}}; {{key}}</li></a>
       {% endfor %}
     </ul>
 
@@ -120,7 +120,7 @@ a{
 }
 .feeling{
   font-size: 5em;
-  display: inline;
+  display: inline-block;
   margin: .5em;
 }
 
@@ -136,5 +136,11 @@ ul{
 list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+@media screen and (max-width: 667px) {
+  #cola{
+    width: 50%;
+  }
 }
 </style>
