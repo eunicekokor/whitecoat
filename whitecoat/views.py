@@ -77,10 +77,10 @@ def feelings_fxn():
       "final_key": "",
       "final_message": "",
       "recommendation": {
-        "sad":["https://www.youtube.com/embed/Q-GLuydiMe4",""],
-        "happy":["https://www.youtube.com/embed/Oce4ber3Hko",""],
+        "sad":["https://www.youtube.com/embed/Q-GLuydiMe4","https://www.youtube.com/embed/__VqT6jhblQ"],
+        "happy":["https://www.youtube.com/embed/IKjJ6DQF7xY?start=15&amp;","https://www.youtube.com/embed/Oce4ber3Hko"],
         "angry":["https://www.youtube.com/embed/WHRnvjCkTsw","https://www.youtube.com/embed/sbNZ1pi2Us8"],
-        "disgust":["https://www.youtube.com/embed/xEycwV-JUtc", ""]
+        "disgust":["https://www.youtube.com/embed/xEycwV-JUtc", "https://www.youtube.com/embed/5YL3LT1ZvOM?start=16&amp;"]
       },
       "value": 0
     }
@@ -92,7 +92,10 @@ def feelings_fxn():
       final_dict['final_message'] = "You are not even " + str(key) + " anything at all! Did you click on the wrong emotion?"
     elif value == 1 or value == 2:
       final_dict['value'] = 1
-      final_dict['final_message'] = "You are kind of " + key + ". It's okay. Try to keep a good level of being " + key + ". Wait a little, it will all be okay."
+      if key == "disgust":
+        final_dict['final_message'] = "You are kind of " + key + "ed. It's okay. Try to keep a good level of being " + key + "ed. Wait a little, it will all be okay."
+      else:
+        final_dict['final_message'] = "You are kind of " + key + ". It's okay. Try to keep a good level of being " + key + ". Wait a little, it will all be okay."
     else:
       final_dict['value'] = 3
       final_dict['final_message'] = "You are very " + key + ". We picked a video just for you to help with that feeling."

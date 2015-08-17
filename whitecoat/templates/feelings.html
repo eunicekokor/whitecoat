@@ -32,7 +32,7 @@
         {% for key in final_dict['recommendation'] %}
           {% if key == final_dict['final_key'] %}
             {% if final_dict['value'] == 3 %}
-            <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key][1]}}?rel=0?&amp;autoplay=1&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key][1]}}?autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
             {% else %}
             <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key][0]}}?autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
             {% endif %}
@@ -50,6 +50,22 @@ $('.feeling').click(function(){
   $('.feeling').hide();
   var feelings_dict = {{feelings|safe}}
   var this_id = $(this).attr('id');
+  if (this_id == "happy") {
+    $('html').css("background","#fff159");
+  }
+
+  if (this_id == "sad") {
+    $('html').css("background","#0000ff");
+  }
+
+  if (this_id == "disgust") {
+    $('html').css("background","#3cb878");
+  }
+
+  if (this_id == "angry") {
+    $('html').css("background","#7b2e00");
+  }
+
   $(this).after('<h1>' + feelings_dict[this_id].message + '</h1><form name="blue_ivy" action="/feelings" method="post"><p id="tart"></p></form>');
   // var sel = $('<select>').appendTo('#tart');
   for (option in feelings_dict[this_id].options) {
