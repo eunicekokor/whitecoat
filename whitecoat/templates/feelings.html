@@ -25,11 +25,20 @@
 
     {% else %}
     <h1 id="act"> {{final_dict['final_message']}} </h1>
-    {% for key in final_dict['recommendation'] %}
-      {% if key == final_dict['final_key'] %}
-        <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key]}}?autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+      {% if final_dict['value'] == 0 %}
+      <iframe src="//giphy.com/embed/6SiHMUtIC9S1i" width="100%" height="50%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/despicable-me-minions-shrug-6SiHMUtIC9S1i"></a></p>
+
+      {% else %}
+        {% for key in final_dict['recommendation'] %}
+          {% if key == final_dict['final_key'] %}
+            {% if final_dict['value'] == 3 %}
+            <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key][1]}}?rel=0?&amp;autoplay=1&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            {% else %}
+            <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key][0]}}?autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
       {% endif %}
-    {% endfor %}
     {% endif %}
     </center>
   </body>

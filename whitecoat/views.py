@@ -71,28 +71,31 @@ def feelings_fxn():
       key = value[0]
       value = int(value[1])
     else:
-      # print request.form.getlist('yolo')
       value = len(request.form.getlist('yolo'))
     
     final_dict = {
       "final_key": "",
       "final_message": "",
       "recommendation": {
-        "sad":"https://www.youtube.com/embed/Q-GLuydiMe4",
-        "happy":"https://www.youtube.com/embed/Oce4ber3Hko",
-        "angry":"https://www.youtube.com/embed/WHRnvjCkTsw",
-        "disgust":"https://www.youtube.com/embed/xEycwV-JUtc"
-      }
+        "sad":["https://www.youtube.com/embed/Q-GLuydiMe4",""],
+        "happy":["https://www.youtube.com/embed/Oce4ber3Hko",""],
+        "angry":["https://www.youtube.com/embed/WHRnvjCkTsw","https://www.youtube.com/embed/sbNZ1pi2Us8"],
+        "disgust":["https://www.youtube.com/embed/xEycwV-JUtc", ""]
+      },
+      "value": 0
     }
 
     final_dict['final_key'] = key
 
     if value == 0:
+      final_dict['value'] = 0
       final_dict['final_message'] = "You are not even " + str(key) + " anything at all! Did you click on the wrong emotion?"
     elif value == 1 or value == 2:
+      final_dict['value'] = 1
       final_dict['final_message'] = "You are kind of " + key + ". It's okay. Try to keep a good level of being " + key + ". Wait a little, it will all be okay."
     else:
-      final_dict['final_message'] = "You are very " + key + ". "
+      final_dict['value'] = 3
+      final_dict['final_message'] = "You are very " + key + ". We picked a video just for you to help with that feeling."
   
   return render_template("feelings.html", feelings=feelings, final_dict=final_dict)
 
