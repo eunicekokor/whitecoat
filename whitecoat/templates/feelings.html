@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width+100px, initial-scale=.75">
+    <title>FeelingsApp</title>
+
+    <script src="static/js/jquery.js"></script>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link href="static/style.css" rel="stylesheet"/>
+    <link href="static/fonts.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+  </head>
+
+  <body>
+    <a href="/feelings"><h2 style="display: inline;">Home</h2></a>
+    <a href="/feelings"><i style="display: inline; float:right; margin: 0" class="fa fa-times-circle fa-2x"></i></a>
+    <center>
+    {% if not final_dict %}
+    <h1 id="act"> Hello. How are you feeling? </h1>
+    <ul>
+      {% for key in feelings %}
+      <a class="feeling" id="{{key}}" href="#"><li>&#{{feelings[key].emoji}};</li>{{key}}</a>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+    <h1 id="act"> {{final_dict['final_message']}} </h1>
+    {% for key in final_dict['recommendation'] %}
+      {% if key == final_dict['final_key'] %}
+        <iframe width="100%" height="50%" src="{{final_dict['recommendation'][key]}}?autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    </center>
+  </body>
+</html>
+
+<script>
+$('.feeling').click(function(){
+  $('#act').hide();
+  $('.feeling').hide();
+  var feelings_dict = {{feelings|safe}}
+  var this_id = $(this).attr('id');
+  $(this).after('<h1>' + feelings_dict[this_id].message + '</h1><form name="blue_ivy" action="/feelings" method="post"><p id="tart"></p></form>');
+  // var sel = $('<select>').appendTo('#tart');
+  for (option in feelings_dict[this_id].options) {
+    if (this_id == "happy") {
+      var option_num = parseInt(option) + 1
+      $('#tart').append("<input name='yolo' type='radio' value=" + this_id + "_" + option_num + ">" +feelings_dict[this_id].options[option] +'</input><br>');
+    }
+    else{
+      $('#tart').append("<input name='yolo' type='checkbox' value=" + this_id + ">" +feelings_dict[this_id].options[option] +'</input><br>');
+    }
+  }
+  $('#tart').append("<a herf='#'><button id='cola'> Submit </button></a>");
+  $(this).removeAttr("a");
+
+})
+</script>
+
+<style>
+
+#cola{
+  color: black;
+  margin-top: 3%;
+  font-size: 100%;
+  line-height: 1.5em;
+  background: transparent;
+  padding: 12px;
+  border-color:black;
+  border-style: solid;
+  border-width: medium;
+  width: 20%;
+  height: inherit;
+  display: inline-block;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+#cola:hover{
+  border-color:#252525;
+  color: white;
+  background: #252525;
+}
+
+#tart{
+  font-size: 1.5em;
+}
+a{
+  text-decoration:none;
+}
+.feeling{
+  font-size: 5em;
+  display: inline;
+  margin: .5em;
+}
+
+li {
+    display: inline;
+}
+h1{
+margin-top:15%;
+  font-size: 2.5em;
+}
+
+ul{
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+</style>
