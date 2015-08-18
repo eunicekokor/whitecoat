@@ -55,7 +55,7 @@ $('.feeling').click(function(){
   }
 
   if (this_id == "sad") {
-    $('html').css("background","#0000ff");
+    $('html').css("background","#3ca5b8");
   }
 
   if (this_id == "disgust") {
@@ -63,7 +63,7 @@ $('.feeling').click(function(){
   }
 
   if (this_id == "angry") {
-    $('html').css("background","#7b2e00");
+    $('html').css("background","#e49caf");
   }
 
   $(this).after('<h1>' + feelings_dict[this_id].message + '</h1><form name="blue_ivy" action="/feelings" method="post"><p id="tart"></p></form>');

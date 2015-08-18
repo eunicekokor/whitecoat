@@ -124,11 +124,55 @@ def feelings_fxn():
 @app.route("/feelings/feelings-graph", methods=["GET","POST"])
 def graph():
   data = {}
+  def get_happy_count(db):
+    q = '''SELECT COUNT(*) FROM all_feelings WHERE feeling=\'happy\' '''
+    db.execute(q)
+    count = db.fetchone()
+    count['happy'] = count.pop('count')
+    count['happy'] = int(count['happy'])
+    return count
+
+  def get_sad_count(db):
+    q = '''SELECT COUNT(*) FROM all_feelings WHERE feeling=\'sad\' '''
+    db.execute(q)
+    count = db.fetchone()
+    count['sad'] = count.pop('count')
+    count['sad'] = int(count['sad'])
+    return count
+
+  def get_angry_count(db):
+    q = '''SELECT COUNT(*) FROM all_feelings WHERE feeling=\'angry\' '''
+    db.execute(q)
+    count = db.fetchone()
+    count['angry'] = count.pop('count')
+    count['angry'] = int(count['angry'])
+    return count
+
+  def get_disgust_count(db):
+    q = '''SELECT COUNT(*) FROM all_feelings WHERE feeling=\'disgust\' '''
+    db.execute(q)
+    count = db.fetchone()
+    count['disgust'] = count.pop('count')
+    count['disgust'] = int(count['disgust'])
+    return count
+
+  def get_all_feelings(db):
+    q = '''SELECT * FROM all_feelings'''
+    db.execute(q)
+    data = db.fetchall()
+    
+    for entry in data:
+      entry['time'] = entry['time'].strftime('%A %d %b %Y %l:%M %p')
+    return data
+
   with connect(DATABASE_URL) as conn:
       with dict_cursor(conn) as db:
-        q = '''SELECT * FROM all_feelings'''
-        db.execute(q)
-        data = db.fetchall()
-        for entry in data:
-          entry['time'] = entry['time'].strftime('%A %d %b %Y %l:%M %p')
-  return render_template("graph.html", data=data)
+        data = get_all_feelings(db)
+
+        counts = []
+        counts.append(get_happy_count(db))
+        counts.append(get_sad_count(db))
+        counts.append(get_disgust_count(db))
+        counts.append(get_angry_count(db))
+
+  return render_template("graph.html", data=data, counts=counts)
