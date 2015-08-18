@@ -1,12 +1,20 @@
 from whitecoat import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, g
 from datetime import timedelta, datetime
 from twilio.rest import TwilioRestClient
+from psycopg2 import connect, extras
 from config import *
 import json
+import sqlite3
 
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
- 
+DATABASE_URL = DATABASE_URL
+
+#
+# Setup for DB
+#
+def dict_cursor(conn, cursor_factory=extras.RealDictCursor):
+    return conn.cursor(cursor_factory=cursor_factory)
 
 @app.route("/", methods=["GET","POST"])
 def index():
@@ -87,6 +95,7 @@ def feelings_fxn():
 
     final_dict['final_key'] = key
 
+
     if value == 0:
       final_dict['value'] = 0
       final_dict['final_message'] = "You are not even " + str(key) + " anything at all! Did you click on the wrong emotion?"
@@ -99,7 +108,27 @@ def feelings_fxn():
     else:
       final_dict['value'] = 3
       final_dict['final_message'] = "You are very " + key + ". We picked a video just for you to help with that feeling."
+
+    with connect(DATABASE_URL) as conn:
+      with dict_cursor(conn) as db:
+        '''Setup light database '''
+
+        q = ''' INSERT INTO all_feelings (time, feeling, intensity) 
+        VALUES ( %(time)s, %(feeling)s, %(intensity)s) '''
+        # Insert a row of data
+        db.execute(q, {"time":datetime.now(), "feeling":final_dict['final_key'], "intensity":final_dict['value']})
+
   
   return render_template("feelings.html", feelings=feelings, final_dict=final_dict)
 
-
+@app.route("/feelings/feelings-graph", methods=["GET","POST"])
+def graph():
+  data = {}
+  with connect(DATABASE_URL) as conn:
+      with dict_cursor(conn) as db:
+        q = '''SELECT * FROM all_feelings'''
+        db.execute(q)
+        data = db.fetchall()
+        for entry in data:
+          entry['time'] = entry['time'].strftime('%A %d %b %Y %l:%M %p')
+  return render_template("graph.html", data=data)
