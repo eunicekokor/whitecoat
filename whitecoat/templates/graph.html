@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width+100px, initial-scale=.75">
+    <title>FeelingsApp</title>
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon" />
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="/static/fonts.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+  </head>
+
+  <body>
+    <a href="/feelings"><h2 style="display: inline;">Home</h2></a>
+    <a href="/feelings/feelings-graph"><i style="display: inline; float:right; margin: 0" class="fa fa-bar-chart fa-2x"></i></a>
+    <center>
+
+      {% block body %}
+ 
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <div id="chart_div"  style="width: 100%; height: 75%;"><div>
+      
+  
+<script type='text/javascript'>
+ 
+google.load('visualization', '1', {packages: ['corechart', 'bar']});
+google.setOnLoadCallback(drawBasic);
+ 
+function drawBasic() {
+ 
+      var data = google.visualization.arrayToDataTable([
+        ['Feeling', 'Number of People Who Are Feeling', { role: 'style' }],
+        ['happy', {{counts[0].happy}}, '#fff159'],
+        ['sad', {{counts[1].sad}}, '#3ca5b8'],
+        ['disgust', {{counts[2].disgust}}, '#3cb878'],
+        ['angry', {{counts[3].angry}}, '#e49caf']
+      ]);
+ 
+      var options = {
+        title: 'How are other people feeling?',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: '',
+          minValue: 0
+        },
+        vAxis: {
+          title: ''
+        },
+        animation: {
+          "startup": true,
+          duration: 1000,
+          easing: 'out'
+        },
+        backgroundColor: { fill:'transparent' }
+      };
+ 
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+ 
+      chart.draw(data, options);
+    }
+ 
+</script>
+ 
+ 
+{% endblock %}
+    </center>
+  </body>
+</html>
+
+<style>
+
+#cola{
+  color: black;
+  margin-top: 3%;
+  font-size: 100%;
+  line-height: 1.5em;
+  background: transparent;
+  padding: 12px;
+  border-color:black;
+  border-style: solid;
+  border-width: medium;
+  width: 20%;
+  height: inherit;
+  display: inline-block;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+#cola:hover{
+  border-color:#252525;
+  color: white;
+  background: #252525;
+}
+
+#tart{
+  font-size: 1.5em;
+}
+a{
+  text-decoration:none;
+}
+.feeling{
+  display: inline-block;
+  margin: 1%;
+}
+
+li {
+    display: inline;
+    font-size: 2em;
+}
+
+h1{
+margin-top:15%;
+  font-size: 2.5em;
+}
+
+ul{
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 667px) {
+  #cola{
+    width: 50%;
+  }
+}
+</style>
