@@ -11,7 +11,7 @@ from datetime import datetime
 def sendemail():
   COMMASPACE = ', '
   # Create the container (outer) email message.
-  html = """\
+  html =("""\
   <html>
     <head>
       <title></title>
@@ -21,15 +21,15 @@ def sendemail():
 
     <p style="text-align: center;">If you have anything to update STACE on today, 
       <span style="font-size:18px; font-family:tahoma,geneva,sans-serif;">
-        <a href="%s">Edit it here!</a>
-        <a href="%s">
-        %s</a>
+        <a href="{}">Edit it here!</a>
+        <a href="{}">
+        {}</a>
         </span></span>
     </p>
 
     </body>
     </html>
-  """ % (STACEDOC_URL,STACEDOC_URL,STACEDOC_URL)
+  """).format(STACEDOC_URL,STACEDOC_URL,STACEDOC_URL)
   msg = MIMEMultipart()
   part2 = MIMEText(html, 'html')
   msg.attach(part2)
